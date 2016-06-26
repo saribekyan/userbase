@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Signup to Userbase</title>
+    </head>
+    <body>
+        <form action="/signup" method="post">
+            Username: <input type="text" name="username"> </br>
+            Password: <input type="password" name="password"> </br>
+            <input type="submit" value="Signup">
+        </form>
+        {{ with .WrongUsername }}
+        {{ . }}
+        {{ end }}
+        </br>
+        <a href="signup">Sign up</a>
+    </body>
+</html>
+

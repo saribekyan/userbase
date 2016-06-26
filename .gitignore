@@ -1,0 +1,4 @@
+*.swp
+*.pem
+certificates/generate_cert
+userbase

@@ -1,0 +1,12 @@
+{
+    "Database": {
+        "Type": "sqlite3",
+        "Path": "userbase.db"
+    },
+    "Templates": "templates",
+    "Certificate": {
+        "CertFile": "certificates/cert.pem",
+        "KeyFile": "certificates/key.pem"
+    },
+    "Host": "localhost:10443"
+}
