@@ -5,7 +5,9 @@
     <body>
         <p>User {{.User}} is logged in.</p>
         <p>Number of alive sessions for this user: {{.NumSessions}}</p>
-        <button type="button" formaction="GET">Sign out</button>
+
+        <form action="/logout" method="post">
+            <input type="submit" value="Sign out">
+        </form>
     </body>
 </html>
-
