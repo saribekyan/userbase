@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Userbase</title>
+        <link rel="stylesheet" type="text/css" href="/ui/userbase.css"/>
+    </head>
+    <body>
+        <div class="center-outer">
+            <div class="center-middle">
+                <div class="center-inner">
+                    <h3>Welcome to Userbase, {{.Fullname}}</h3>
+                    <p>Userbase now has {{.NUsers}} users</p>
+                    <p>You have {{.NSessions}} active sessions now</p>
+
+                    <form action="/logout" method="post">
+                        <input type="submit" value="Sign out">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

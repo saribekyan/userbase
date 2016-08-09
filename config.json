@@ -3,7 +3,7 @@
         "Type": "sqlite3",
         "Path": "userbase.db"
     },
-    "Templates": "templates",
+    "Templates": "ui/html",
     "Certificate": {
         "CertFile": "certificates/cert.pem",
         "KeyFile": "certificates/key.pem"

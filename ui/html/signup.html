@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup to Userbase</title>
+        <link rel="stylesheet" type="text/css" href="/ui/userbase.css"/>
+    </head>
+    <body>
+        <div class="form-page center-outer">
+            <div class="center-middle">
+                <div class="form center-inner">
+                    <form name="signup-form" action="/signup" method="post"/>
+                        <input type="text"     name="fullname" placeholder="full name"/>
+                        <input type="text"     name="username" placeholder="username"/>
+                        <input type="password" name="password" placeholder="password"/>
+                        {{if .Exists}}
+                            <p class="err-message">Username already exists.</p>
+                        {{end}}
+                        <input type="submit" value="signup"/>
+                    </form>
+                    <p class="message">Already registered? <a href="index">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

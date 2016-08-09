@@ -1,0 +1,64 @@
+/* Used: http://www.w3schools.com/css/tryit.asp?filename=trycss_forms for guidance */
+
+.form-page {
+    text-align: center;
+}
+
+/* the following three classes are for vertical centering */
+.center-outer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.center-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.center-inner {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+/* -------- */
+
+.form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.err-message {
+    color: red;
+    font-size: 10pt;
+    text-align: left;
+    margin-top: -0px;
+    margin-bottom: 0px;
+}

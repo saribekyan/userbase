@@ -8,7 +8,7 @@ type UsersManager struct {
 	db *sql.DB
 }
 
-func (um *UsersManager) AddUser(username string, password string) (bool, string) {
+func (um *UsersManager) AddUser(username string, password string, fullname string) (bool, string) {
 	userExists, err := um.db.Prepare(
 		`SELECT EXISTS (
 		    SELECT *
@@ -26,15 +26,15 @@ func (um *UsersManager) AddUser(username string, password string) (bool, string)
 	}
 
 	userAdd, err := um.db.Prepare(`
-                INSERT INTO users (username, derived_key, salt)
-                            VALUES (?, ?, ?)`)
+                INSERT INTO users (username, fullname, derived_key, salt)
+                            VALUES (?, ?, ?, ?)`)
 	defer userAdd.Close()
 	check(err)
 
 	salt := randomString(SALT_LEN)
 	dKey := deriveKey(password, salt)
 
-	_, err = userAdd.Exec(username, dKey, salt)
+	_, err = userAdd.Exec(username, fullname, dKey, salt)
 	check(err)
 	return true, ""
 }
@@ -57,10 +57,40 @@ func (um *UsersManager) AuthenticateLogin(username string, password string) bool
 	return deriveKey(password, salt) == dKey
 }
 
+func (um *UsersManager) Fullname(username string) string {
+	getFullname, err := um.db.Prepare(`
+		SELECT fullname
+    	    	FROM users
+    	    	WHERE username=?`)
+	defer getFullname.Close()
+	check(err)
+
+	var fullname string
+	err = getFullname.QueryRow(username).Scan(&fullname)
+	if err == sql.ErrNoRows {
+		panic("User not found")
+	}
+	check(err)
+
+	return fullname
+}
+
+func (um *UsersManager) NUsers() int {
+	usersCount, err := um.db.Prepare(`SELECT COUNT(*) as count FROM users`)
+	defer usersCount.Close()
+	check(err)
+
+	var nUsers int
+	err = usersCount.QueryRow().Scan(&nUsers)
+
+	return nUsers
+}
+
 func MakeUM(db *sql.DB) (um *UsersManager) {
 	createUsersDB, err := db.Prepare(`
 	    CREATE TABLE IF NOT EXISTS users (
 		    username TEXT NOT NULL PRIMARY KEY,
+		    fullname TEXT,
 	            derived_key TEXT,
 	            salt TEXT
 	    );`)
